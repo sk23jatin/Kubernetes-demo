@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enroll-service
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: enroll-service
+  template:
+    metadata:
+      labels:
+        app: enroll-service
+    spec:
+      containers:
+      - name: enroll-service
+        image: docker.io/library/enroll_service:v1
+        # change if your app listens elsewhere
+        ports:
+        - containerPort: 5003
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: enroll-service
+spec:
+  selector:
+    app: enroll-service
+  ports:
+  - protocol: TCP
+    port: 5003
+    targetPort: 5003
+  type: ClusterIP
