@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: course-service
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       app: course-service
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: course-service
-        image: docker.io/library/course_service:v2
+        image: docker.io/library/course_service:final
         # change if your app listens elsewhere
         ports:
         - containerPort: 5002

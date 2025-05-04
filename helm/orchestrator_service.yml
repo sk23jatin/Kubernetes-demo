@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: student-service
+  name: orchestrator-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: student-service
+      app: orchestrator-service
   template:
     metadata:
       labels:
-        app: student-service
+        app: orchestrator-service
     spec:
       containers:
-      - name: student-service
-        image: docker.io/library/student_service:final
+      - name: orchestrator-service
+        image: docker.io/library/orchestrator_service:final
         ports:
-        - containerPort: 5001
+        - containerPort: 5004
         resources:
           requests:
             memory: "128Mi"
@@ -27,12 +27,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: student-service
+  name: orchestrator-service
 spec:
   selector:
-    app: student-service
+    app: orchestrator-service
   ports:
   - protocol: TCP
-    port: 5001
-    targetPort: 5001
+    port: 5004
+    targetPort: 5004
   type: ClusterIP

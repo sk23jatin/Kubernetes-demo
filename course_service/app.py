@@ -38,11 +38,11 @@ def get_all_courses():
 
 
 if __name__ == "__main__":
-    app.run(port=5002)
+    app.run(host='0.0.0.0', port=5002)
     # Example curl commands for the APIs:
 
     # To create a course:
-    # curl -X POST -H "Content-Type: application/json" -d '{"course_id": "CSE101", "name": "Introduction to Computer Science", "credits": 4}' http://localhost:5002/courses
+    # curl -X POST -H "Content-Type: application/json" -d '{"course_id": "MAT101", "name": "Introduction to Mathemathics", "credits": 4}' http://localhost:5002/courses
 
     # To get a course by course_id:
     # curl http://localhost:5002/course/CSE101
